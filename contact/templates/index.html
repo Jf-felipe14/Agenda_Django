@@ -1,1 +1,41 @@
 {% extends 'global/base.html' %}
+
+{% block content %}
+    <div class="responsive-table">
+        {% if page_obj %}
+        <table class="contacts-table">
+            <caption class="table-caption">
+                Contacts
+            </caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>E-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in page_obj %}
+                    <tr class="table-row">
+                        <td class="table-cel">
+                            <a href="{% url 'contact:contact' contact.id %}">{{contact.id}}</a></td>
+                        <td class="table-cel">{{contact.first_name}}</td>
+                        <td class="table-cel">{{contact.last_name}}</td>
+                        <td class="table-cel">{{contact.phone}}</td>
+                        <td class="table-cel">{{contact.email}}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <div class="single-contact">
+                <h1 class="single-contact-name">
+                    Nenhum Contato Encontrado
+                </h1>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

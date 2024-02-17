@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="{% static 'global/css/style.css' %}">
 </head>
 <body>
-    <h1>Qaulquer Coisa</h1>
+    <header class="header">
+        <h1 class="header-heading"><a href="{% url 'contact:index' %}">Agenda</a></h1>
+    
+        <div class="search">
+        <form action="{% url 'contact:search' %}" method="GET">
+            <input type="search" class="search_input" placeholder="Search" name="q" value="{{ search_value }}">
+        </form>
+        </div>
+    </header>
+    <main class="content">
+        {% block content %}
+        {% endblock %}
+    </main>    
+    {% include 'global/pagination.html' %}
 </body>
 </html>
